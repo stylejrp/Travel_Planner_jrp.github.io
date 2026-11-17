@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Shanghai Trip · 5 วัน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#37352f; --muted:#787774; --faint:#a3a19b; --line:#e9e9e7; --line-2:#dfdfdc;
+  --gray:#f1f1ef; --hover:rgba(55,53,47,.035); --blue:#2383e2;
+  --font:'Inter','Noto Sans Thai',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- COVER (three.js) ---------- */
+.cover{position:relative;height:clamp(190px,25vw,330px);overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(520px 260px at 76% 88%,rgba(255,241,214,.95),rgba(255,241,214,0) 70%),
+    linear-gradient(180deg,#8fa9c8 0%,#b9c4d2 38%,#f0cfb0 82%,#f6dcc1 100%)}
+#cover-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+/* ---------- PAGE ---------- */
+.page{max-width:1320px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 72px}
+.icon{width:78px;height:78px;border-radius:10px;margin:-40px 0 0 6px;position:relative;z-index:2;display:grid;place-items:center;
+  background:linear-gradient(145deg,#d29a26,#b97d12);box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:2.3rem}
+h1{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;line-height:1.15;padding:30px 0 20px;border-bottom:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:250px minmax(0,1fr) 290px;gap:28px;padding-top:28px;align-items:start}
+.side{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;display:grid;gap:16px;scrollbar-width:thin}
+.card{border:1px solid var(--line-2);border-radius:4px;background:#fff}
+.blk{display:flex;align-items:center;gap:14px;padding:20px;border-radius:4px;font-weight:600;font-size:1.02rem;text-transform:uppercase;letter-spacing:.01em}
+.blk .ic{font-size:1.15rem;line-height:1}
+
+/* left menu */
+.menu .blk{padding:18px 22px 10px 22px;font-size:1rem}
+.menu nav{padding:0 16px 14px 44px}
+.menu a{display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500;font-size:.92rem;text-transform:uppercase}
+.menu a:last-child{border-bottom:0}
+.menu a:hover{background:var(--hover)}
+.menu a span.t{border-bottom:1px solid rgba(55,53,47,.28);line-height:1.25;flex:1;min-width:0}
+.menu a b{font-size:.74rem;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+.gray{background:var(--gray);border-color:transparent}
+.gray .blk{padding:18px 22px 6px}
+.gray ul{padding:0 22px 20px 44px;display:grid;gap:7px;font-size:.88rem}
+.gray li::marker{color:var(--muted)}
+.gray a{border-bottom:1px solid rgba(55,53,47,.3);text-decoration:none}
+.gray a:hover{background:rgba(55,53,47,.06)}
+.notes li{color:#4b4943;line-height:1.5}
+
+/* center: day sections */
+.center{display:grid;gap:40px;min-width:0}
+.sec{--tint:#fde8ec;--dot:#e5546d;scroll-margin-top:16px;min-width:0}
+.sec__head{display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:4px;background:var(--tint)}
+.sec__head .ic{font-size:1.2rem;line-height:1}
+.sec__title{flex:1;min-width:0}
+.sec__title h2{font-size:1.02rem;font-weight:600;text-transform:uppercase;letter-spacing:.01em;line-height:1.3}
+.sec__title p{font-size:.8rem;color:#5c5a55;margin-top:1px;font-weight:400}
+.sec__cnt{font-size:.8rem;font-weight:600;background:rgba(255,255,255,.7);padding:3px 11px;border-radius:99px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-top:14px;font-size:.92rem}
+.tab{display:flex;gap:8px;align-items:center;padding:8px 6px;font-weight:500;border-bottom:2px solid var(--ink);margin-bottom:-1px}
+.tab svg{width:15px;height:15px}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+.tbl th{font-weight:400;color:var(--faint);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:.84rem;white-space:nowrap}
+.tbl th i{font-style:normal;margin-right:6px;font-size:.8rem}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th+th,.tbl td+td{border-left:1px solid var(--line)}
+.tbl tr.row:hover td{background:var(--hover)}
+.c-time{width:66px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.c-type{width:132px}
+.c-chk{width:46px;text-align:center;vertical-align:middle!important}
+.c-link{width:104px;font-size:.84rem}
+.nm{cursor:pointer;font-weight:500;line-height:1.35;word-break:break-word}
+.nm em{font-style:normal;color:var(--muted);font-weight:400;font-size:.84rem;margin-left:4px}
+.ty-ico{display:none;margin-right:6px}
+.note{color:var(--muted);font-size:.82rem;margin-top:2px;line-height:1.4}
+.row.is-done .nm{text-decoration:line-through;text-decoration-color:rgba(55,53,47,.4);color:var(--faint)}
+.row.is-done .note{color:#c1bfb9}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:1px 9px;border-radius:99px;font-size:.78rem;line-height:1.55;background:var(--pb,#eae9e6);white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--pd,#787774)}
+.t-sight{--pb:#e3eef8;--pd:#3d7ec2}.t-food{--pb:#fbe9dc;--pd:#d9730d}.t-cafe{--pb:#eee0da;--pd:#976d57}
+.t-shop{--pb:#f9e3ee;--pd:#c14c8a}.t-bakery{--pb:#fbf3db;--pd:#cb912f}.t-metro{--pb:#eae9e6;--pd:#787774}
+.t-hotel{--pb:#eae4f2;--pd:#9065b0}.t-plane{--pb:#ddebf1;--pd:#2b7ba3}
+.opt{--pb:#fbf3db;--pd:#cb912f;margin-left:4px}
+.c-type .opt{margin:4px 0 0 0}
+.lk{display:inline-block;color:#4b4943;text-decoration:none;border-bottom:1px solid rgba(55,53,47,.3);line-height:1.35;margin:0 8px 2px 0}
+.lk:hover{background:rgba(55,53,47,.06)}
+.chk{position:relative;display:inline-block;width:18px;height:18px;vertical-align:middle}
+.chk input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:18px;height:18px}
+.box{display:block;width:18px;height:18px;border:2px solid var(--ink);border-radius:3px;background:#fff;cursor:pointer;transition:.12s;position:relative}
+.chk input:focus-visible + .box{outline:2px solid var(--blue);outline-offset:2px}
+.chk input:checked + .box{background:var(--blue);border-color:var(--blue)}
+.box::after{content:"";position:absolute;left:3px;top:-1px;width:5px;height:10px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(40deg) scale(0);transition:.12s}
+.chk input:checked + .box::after{transform:rotate(40deg) scale(1)}
+.transit td{color:var(--muted);font-size:.84rem;padding:5px 10px;background:#fafaf9}
+.transit .tm{display:inline-block;min-width:56px;font-variant-numeric:tabular-nums}
+.callout{display:flex;gap:12px;margin-top:14px;padding:14px 16px;border-radius:4px;background:#fbf3db;font-size:.9rem;line-height:1.55}
+
+/* right: trips */
+.trips .blk{background:#e6f0f5}
+.up{display:flex;align-items:center;gap:10px;padding:14px 4px 10px;margin:0 14px;border-bottom:1px solid var(--line);font-weight:600;font-size:.95rem}
+.up small{color:var(--faint);margin-left:-4px}
+.trip{margin:14px;border:1px solid var(--line-2);border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(15,15,15,.08)}
+.trip svg{display:block;width:100%;height:auto}
+.trip__b{padding:12px 14px 14px;display:grid;gap:8px}
+.trip__name{display:flex;gap:8px;align-items:center;font-weight:600}
+.trip__name span:first-child{color:#3d7ec2}
+.dates{display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--muted);flex-wrap:wrap}
+.dates input{border:1px solid var(--line-2);border-radius:4px;padding:3px 6px;font-size:.84rem;background:#fff;max-width:100%}
+.togo{font-size:.9rem;font-weight:500}
+.meter{height:8px;border-radius:99px;background:var(--gray);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--blue);border-radius:inherit;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.mrow{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted)}
+.mrow b{color:var(--ink);font-weight:600}
+.tag{display:inline-block;font-size:.8rem;padding:0 8px;border-radius:3px;background:#dbeddb;color:#1c3829;line-height:1.55;justify-self:start}
+.reset{margin:0 14px 16px;border:1px solid var(--line-2);border-radius:4px;background:#fff;padding:6px 12px;cursor:pointer;font-size:.84rem;color:var(--muted);width:calc(100% - 28px)}
+.reset:hover{background:var(--hover)}
+
+@media (max-width:1180px){
+  .cols{grid-template-columns:minmax(0,1fr);gap:20px}
+  .side{position:static;max-height:none;overflow:visible}
+  .left{display:contents}              /* ให้การ์ดในคอลัมน์ซ้ายสลับลำดับได้เอง */
+  .right{order:-3}
+  .menu{order:-2}
+  .center{order:0}
+  .links{order:1}
+  .notes{order:2}
+}
+@media (max-width:680px){
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block}
+  .tbl thead{display:none}
+  .tbl tr.row{display:grid;grid-template-columns:50px 1fr 36px;border-bottom:1px solid var(--line);padding:6px 0}
+  .tbl td{border:0!important;padding:3px 8px}
+  .tbl .c-time{grid-column:1;grid-row:1;width:auto;padding-top:7px;font-size:.82rem}
+  .tbl .c-name{grid-column:2;grid-row:1}
+  .tbl .c-chk{grid-column:3;grid-row:1;padding-top:8px}
+  .tbl .c-type{display:none}
+  .tbl .c-link{grid-column:2;grid-row:2;width:auto}
+  .ty-ico{display:inline}
+  .tbl tr.transit{display:block}
+  .tbl tr.transit td{padding:5px 12px}
+  .icon{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="cover" id="top" aria-hidden="true"><canvas id="cover-canvas"></canvas></div>
+
+<div class="page">
+  <div class="icon" aria-hidden="true">🌏</div>
+  <h1>My Shanghai Trip</h1>
+
+  <div class="cols">
+    <aside class="side left" aria-label="เมนู">
+      <div class="card menu">
+        <div class="blk"><span class="ic">☰</span>Menu</div>
+        <nav id="menuNav"></nav>
+      </div>
+      <div class="card gray links">
+        <div class="blk"><span class="ic">🔗</span>Useful Links</div>
+        <ul>
+          <li><a href="https://www.amap.com" target="_blank" rel="noopener">AMap (高德地图)</a></li>
+          <li><a href="https://www.didiglobal.com" target="_blank" rel="noopener">DiDi</a></li>
+        </ul>
+      </div>
+      <div class="card gray notes">
+        <div class="blk"><span class="ic">📝</span>ข้อควรเช็ก</div>
+        <ul>
+          <li>ตลาดคริสต์มาสเปิดประมาณ 25 พ.ย.–27 ธ.ค. 2026 (ข้อมูลจากบทความท่องเที่ยว) สถานที่จัดแต่ละปีไม่เหมือนกัน</li>
+          <li>เวลาเปิด-ปิดส่วนใหญ่เป็นการประมาณ (ยืนยันแล้วเฉพาะ Butterful &amp; Creamorous สาขา Xintiandi: 10:00–22:00)</li>
+          <li>Butterful &amp; Creamorous สาขา Wujiang Rd และที่อยู่ Saturnbird (三顿半) มีแหล่งข้อมูลไม่ตรงกัน ให้เช็กที่อยู่ก่อนไป</li>
+          <li>ร้านที่ไม่รู้ที่อยู่แน่ชัด ปุ่มจะเป็น "ค้นหาใน AMap" แทนการปักหมุด</li>
+          <li>ยังไม่ทราบตำแหน่งของ "Road ตึก W Zone" จึงยังไม่ได้ใส่</li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="center" id="days" aria-label="ตารางแต่ละวัน"></main>
+
+    <aside class="side right" aria-label="สรุปทริป">
+      <div class="card trips">
+        <div class="blk"><span class="ic">🧳</span>My Trips</div>
+        <div class="up"><span aria-hidden="true">🛫</span>Upcoming <small aria-hidden="true">⌄</small></div>
+        <article class="trip">
+          <svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93b1d4"/><stop offset=".62" stop-color="#f1c7a2"/><stop offset="1" stop-color="#f9dfc4"/></linearGradient></defs>
+            <rect width="320" height="150" fill="url(#sk)"/>
+            <circle cx="238" cy="104" r="36" fill="#fff3d6" opacity=".75"/>
+            <g fill="#3a4560">
+              <rect x="6" y="98" width="18" height="52"/><rect x="28" y="84" width="14" height="66"/><rect x="46" y="106" width="20" height="44"/>
+              <rect x="70" y="74" width="16" height="76"/><rect x="90" y="96" width="22" height="54"/><rect x="116" y="112" width="16" height="38"/>
+              <rect x="176" y="92" width="14" height="58"/><polygon points="198,150 205,34 209,34 216,150"/>
+              <rect x="222" y="86" width="16" height="64"/><rect x="262" y="92" width="16" height="58"/><rect x="282" y="104" width="22" height="46"/><rect x="304" y="82" width="14" height="68"/>
+            </g>
+            <rect x="148.5" y="24" width="3" height="126" fill="#3a4560"/>
+            <g fill="#e2677f"><circle cx="150" cy="104" r="12"/><circle cx="150" cy="64" r="8"/><circle cx="150" cy="40" r="5"/></g>
+          </svg>
+          <div class="trip__b">
+            <div class="trip__name"><span aria-hidden="true">📍</span><span>Shanghai</span></div>
+            <label class="dates" for="startDate">วันเดินทาง <input type="date" id="startDate"></label>
+            <p class="togo" id="togo">ตั้งวันเดินทางเพื่อนับถอยหลัง</p>
+            <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter"><i id="meterFg"></i></div>
+            <div class="mrow"><span id="tripTxt">ไปแล้ว 0 / 0 จุด</span><b id="tripPct">0%</b></div>
+            <span class="tag">5 วัน</span>
+          </div>
+        </article>
+        <button class="reset" id="resetBtn">ล้างการติ๊กทั้งหมด</button>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ---------- DATA (pos = [lng, lat] โดยประมาณ ใช้สร้างลิงก์ภายนอกเท่านั้น) ---------- */
+const DAYS = [
+  { id:'d1', ico:'🌆', tint:'#fde8ec', dot:'#e5546d', menu:'Day 1 · Bund', title:'Day 1 · Bund + เมืองเก่า',
+    sub:'Huangpu · Tiantong Rd → North Bund → Rock Bund → Yuyuan',
+    items:[
+      {t:'09:30', type:'metro', name:'สถานี Tiantong Road', zh:'天潼路站', note:'สาย 10 · จุดเริ่มต้นของวัน', pos:[121.4845,31.2438]},
+      {t:'10:00', type:'sight', name:'North Bund', zh:'北外滩', note:'เดินริมแม่น้ำ ถ่ายรูป', pos:[121.5015,31.2495]},
+      {t:'11:30', type:'sight', name:'Rock Bund', zh:'洛克外滩', note:'ตึกเก่าและซอยถ่ายรูป', pos:[121.4900,31.2425]},
+      {t:'12:30', type:'food',  name:'Lai Lai Xiao Long', zh:'莱莱小笼', note:'มื้อเที่ยง · เลือกสาขาที่ใกล้ที่สุด', pos:[121.4905,31.2410], approx:true},
+      {t:'14:00', type:'cafe',  name:'Hey Tea', zh:'喜茶', note:'พักคาเฟ่', pos:[121.4905,31.2395], approx:true},
+      {t:'14:30', type:'cafe',  name:'Matcha Wang', note:'ถ้าไหว · เช็กสาขาก่อนไป', pos:[121.4900,31.2385], approx:true, opt:true},
+      {transit:true, t:'15:00', text:'🚇 นั่งสาย 10 ไป Yuyuan Garden'},
+      {t:'15:30', type:'sight', name:'Yuyuan Old Street', zh:'豫园老街', note:'เดินเล่น ซื้อของ รอไฟตอนเย็น (15:30–18:30)', pos:[121.4922,31.2273]},
+      {t:'19:00', type:'food',  name:'New Sukiyaki', note:'มื้อเย็น · เช็กสาขาที่ใกล้', pos:[121.4915,31.2290], approx:true},
+      {t:'20:00', type:'sight', name:'ตลาดคริสต์มาส / Bund ยามค่ำ', zh:'外滩', note:'เปิดประมาณ 25 พ.ย.–27 ธ.ค. · เช็กสถานที่จัดจริง', pos:[121.4905,31.2375], approx:true, opt:true}
+    ]},
+  { id:'d2', ico:'🌳', tint:'#fdf1d8', dot:'#d9921c', menu:'Day 2 · Xintiandi', title:'Day 2 · French Concession',
+    sub:'Xuhui · Xintiandi → Huaihai Rd → Anfu Rd → Wukang Mansion',
+    items:[
+      {t:'10:00', type:'cafe',   name:'Butterful & Creamorous (Xintiandi)', note:'ขนมหวานเช้า · เปิด 10:00–22:00 · Lane 123 Xingye Rd', pos:[121.4758,31.2203]},
+      {t:'11:00', type:'sight',  name:'Xintiandi', zh:'新天地', note:'เดินเล่น ถ่ายรูป', pos:[121.4748,31.2196]},
+      {t:'12:30', type:'food',   name:'มื้อเที่ยงในย่าน Xintiandi', note:'เลือกร้านตามใจ', pos:null},
+      {t:'14:00', type:'sight',  name:'Huaihai Road', zh:'淮海中路', note:'เดินช้อปปิ้ง', pos:[121.4600,31.2170]},
+      {t:'14:30', type:'shop',   name:'Harmay', zh:'话梅', note:'ร้านเครื่องสำอาง · สาขาย่าน Huaihai', pos:[121.4610,31.2168], approx:true},
+      {t:'15:15', type:'shop',   name:'I Am Snack', note:'ขนมและของกินเล่น', pos:[121.4580,31.2160], approx:true},
+      {t:'16:00', type:'sight',  name:'Anfu Road', zh:'安福路', note:'ถนนคาเฟ่และร้านเล็ก ๆ', pos:[121.4440,31.2140]},
+      {t:'16:30', type:'cafe',   name:'Pushing Cafe', note:'คาเฟ่ · เช็กที่อยู่ก่อนไป', pos:[121.4443,31.2138], approx:true},
+      {t:'17:00', type:'cafe',   name:'CUBIC 3 (dirty coffee)', note:'คาเฟ่ · เช็กที่อยู่ก่อนไป', pos:[121.4436,31.2132], approx:true},
+      {t:'17:30', type:'sight',  name:'Wukang Mansion', zh:'武康大楼', note:'ถ่ายรูปตอนแสงเย็น', pos:[121.4390,31.2058]},
+      {t:'19:00', type:'bakery', name:'Holiland', zh:'好利来', note:'เบเกอรี่ก่อนมื้อเย็น', pos:[121.4400,31.2070], approx:true},
+      {t:'19:30', type:'bakery', name:'AMAM London Bakery Town', kw:'AMAM', note:'ขนมปัง/เบเกอรี่ · เช็กสาขา', pos:[121.4410,31.2075], approx:true}
+    ]},
+  { id:'d3', ico:'🛍️', tint:'#e7f0e4', dot:'#4f9a57', menu:"Day 3 · Jing'an", title:"Day 3 · Jing'an + People's Square",
+    sub:"Jing'an · วัดจิงอัน → Wujiang Rd → New World → ตลาดคริสต์มาส",
+    items:[
+      {t:'09:30', type:'sight', name:"Jing'an Temple", zh:'静安寺', note:'วัดเปิดเช้า · เช็กเวลาปิดและค่าเข้า', pos:[121.4457,31.2235]},
+      {t:'11:30', type:'cafe',  name:'Saturnbird (三顿半)', zh:'North Shaanxi Rd 155', kw:'三顿半', note:'Into the Force · concept store แรกของแบรนด์', pos:[121.4565,31.2290], approx:true},
+      {t:'12:15', type:'cafe',  name:'Butterful & Creamorous (Wujiang Rd)', kw:'Butterful & Creamorous', note:'ถ้าไหว · ที่อยู่ยังไม่ชัวร์ เช็กก่อนไป', pos:[121.4618,31.2296], approx:true, opt:true},
+      {t:'13:00', type:'food',  name:'Long Time A Go', note:'มื้อเที่ยง · เช็กสาขา', pos:[121.4625,31.2290], approx:true},
+      {transit:true, t:'14:00', text:"🚇 นั่งสาย 2 ไป People's Square"},
+      {t:'14:30', type:'shop',  name:'ห้าง New World', zh:'新世界城', note:'Nanjing Rd East', pos:[121.4745,31.2350]},
+      {t:'17:00', type:'sight', name:'ตลาดคริสต์มาส (สำรอง)', zh:'圣诞市集', note:'เผื่อวัน 1 ยังไม่เปิด · เช็กสถานที่จัดจริง', pos:[121.4760,31.2330], approx:true, opt:true},
+      {t:'19:00', type:'food',  name:'มื้อเย็น + ซื้อของฝาก', note:'ก่อนกลับ', pos:null}
+    ]},
+  { id:'d4', ico:'🌇', tint:'#e3eef8', dot:'#3d7ec2', menu:'Day 4 · Lujiazui', title:'Day 4 · Lujiazui + เข้าโรงแรมสนามบิน',
+    sub:'เช็คเอาท์ → ร้าน/คาเฟ่ที่ยังไม่ได้ไป → Lujiazui → Linyin Art Hotel',
+    warn:'วันนี้ไม่ควรอยู่ข้างนอกถึง 22:00 เต็ม ๆ เพราะต้องเดินทางไปโรงแรมแถวสนามบิน ถ้าอยากอยู่ดึกกว่านี้ ให้ออกจาก Lujiazui ไม่เกิน 21:30',
+    items:[
+      {t:'08:30', type:'food',   name:'อาหารเช้า', pos:null},
+      {t:'09:30', type:'hotel',  name:'เช็คเอาท์ ฝากกระเป๋า', pos:null},
+      {t:'10:00', type:'bakery', name:'AMAM London Bakery Town', kw:'AMAM', note:'ช่วง 10:00–14:30 ใช้กับคาเฟ่ที่ยังไม่ได้ไปและมื้อกลางวันด้วย', pos:[121.4410,31.2075], approx:true},
+      {t:'↳', type:'cafe', name:'คาเฟ่ที่ยังไม่ได้ไป', note:'เลือกจาก Saturnbird, CUBIC 3, Long Time A Go, Butterful & Creamorous', pos:null},
+      {t:'↳', type:'food', name:'มื้อกลางวัน', note:'อยู่ในช่วง 10:00–14:30', pos:null},
+      {t:'15:00', type:'hotel',  name:'รับกระเป๋า', pos:null},
+      {transit:true, t:'15:00', text:'🚇 Metro สาย 10 → สาย 2 ไป Lujiazui'},
+      {t:'16:00', type:'bakery', name:'Holiland (Super Brand Mall)', zh:'好利来', kw:'好利来 正大广场', note:'เปิด 10:00–22:00 · ใกล้ Oriental Pearl · ดูพระอาทิตย์ตก', pos:[121.5017,31.2386], approx:true},
+      {t:'18:00', type:'food',   name:'มื้อเย็นแถว Lujiazui + ช้อปเพิ่ม', note:'ช่วง 18:00–20:30', pos:null},
+      {transit:true, t:'20:30', text:'🚕 Didi ไป Linyin Art Hotel (ประมาณ 45–60 นาที)'},
+      {t:'21:30', type:'hotel',  name:'เช็คอิน Linyin Art Hotel', note:'ต้องเช็คอินก่อนเที่ยงคืน · อาบน้ำ จัดกระเป๋า (21:30–22:00)', pos:null}
+    ]},
+  { id:'d5', ico:'✈️', tint:'#efe6f7', dot:'#9358c4', menu:'Day 5 · กลับบ้าน', title:'Day 5 · เดินทางกลับ (ออกเที่ยงคืน)',
+    sub:'Linyin Art Hotel → สนามบิน PVG · เครื่องออก 03:00',
+    items:[
+      {t:'00:00', type:'plane', name:'รถรับส่งฟรีไป PVG', note:'ต้องแจ้งโรงแรมล่วงหน้า', tel:'+862168788999', telLabel:'โทร +86-21-68788999', pos:null},
+      {t:'00:15', type:'plane', name:'ถึงสนามบิน เช็คอิน', note:'ถึงประมาณ 00:15–00:30', pos:null},
+      {t:'03:00', type:'plane', name:'เครื่องออก', pos:null}
+    ]}
+];
+const TYPES = {
+  metro:{i:'🚇',l:'สถานี'}, sight:{i:'📸',l:'สถานที่'}, food:{i:'🍜',l:'ร้านอาหาร'},
+  cafe:{i:'☕',l:'คาเฟ่'}, shop:{i:'🛍️',l:'ช้อป'}, bakery:{i:'🥐',l:'เบเกอรี่'},
+  hotel:{i:'🏨',l:'โรงแรม'}, plane:{i:'✈️',l:'สนามบิน'}
+};
+
+/* ---------- HELPERS ---------- */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+const LS_DONE = 'shtrip.done.v1', LS_START = 'shtrip.start.v1';
+
+const ITEMS = {};
+DAYS.forEach(d => { d.items.forEach((it, i) => {
+  if (it.transit) return;
+  it.id = `${d.id}-${i}`; ITEMS[it.id] = it;
+}); d.total = d.items.filter(i => !i.transit).length; });
+const TOTAL = Object.keys(ITEMS).length;
+
+let done = new Set();
+try { done = new Set(JSON.parse(store.get(LS_DONE) || '[]').filter(id => ITEMS[id])); } catch(e){}
+
+/* ---------- RENDER ---------- */
+// ลิงก์ภายนอก (ไม่ต้องใช้ Key) · ร้านที่พิกัดยังไม่ชัวร์ใช้ "ค้นหา" แทนปักหมุด
+function amapLink(it){
+  return it.approx
+    ? `https://uri.amap.com/search?keyword=${encodeURIComponent(it.kw || it.zh || it.name)}&city=${encodeURIComponent('上海')}&view=map&coordinate=gaode&callnative=0`
+    : `https://uri.amap.com/marker?position=${it.pos[0]},${it.pos[1]}&name=${encodeURIComponent(it.name)}&coordinate=gaode&callnative=0`;
+}
+function rowHTML(it){
+  const ty = TYPES[it.type], on = done.has(it.id);
+  return `
+  <tr class="row${on?' is-done':''}" id="it-${it.id}" data-id="${it.id}">
+    <td class="c-name">
+      <label class="nm" for="c-${it.id}"><span class="ty-ico" aria-hidden="true">${ty.i}</span>${esc(it.name)}${it.zh?`<em>${esc(it.zh)}</em>`:''}</label>
+      ${it.note?`<div class="note">${esc(it.note)}</div>`:''}
+    </td>
+    <td class="c-time">${it.t}</td>
+    <td class="c-type"><span class="pill t-${it.type}"><i></i>${ty.l}</span>${it.opt?'<br><span class="pill opt"><i></i>ถ้าไหว</span>':''}</td>
+    <td class="c-chk"><span class="chk"><input type="checkbox" id="c-${it.id}" ${on?'checked':''}><label class="box" for="c-${it.id}"><span class="sr">ไปแล้ว</span></label></span></td>
+    <td class="c-link">
+      ${it.tel?`<a class="lk" href="tel:${it.tel}">📞 ${esc(it.telLabel)}</a>`:''}
+      ${it.pos?`<a class="lk" href="${amapLink(it)}" target="_blank" rel="noopener">${it.approx?'ค้นหา ↗':'AMap ↗'}</a>`:''}
+    </td>
+  </tr>`;
+}
+const TABLE_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.7" y="2.7" width="12.6" height="10.6" rx="1.5"/><path d="M1.7 6.5h12.6M6 6.5v6.8"/></svg>';
+function renderDays(){
+  $('#days').innerHTML = DAYS.map(d => `
+  <section class="sec" id="day-${d.id}" style="--tint:${d.tint};--dot:${d.dot}">
+    <header class="sec__head">
+      <span class="ic" aria-hidden="true">${d.ico}</span>
+      <div class="sec__title"><h2>${esc(d.title)}</h2><p>${esc(d.sub)}<span id="date-${d.id}"></span></p></div>
+      <span class="sec__cnt" id="cnt-${d.id}">0/${d.total}</span>
+    </header>
+    <div class="tabs"><span class="tab">${TABLE_ICON}Table</span></div>
+    <table class="tbl">
+      <thead><tr><th><i>Aa</i>สถานที่</th><th class="c-time"><i>▦</i>เวลา</th><th class="c-type"><i>◐</i>ประเภท</th><th class="c-chk"><i>☑</i></th><th class="c-link"><i>↗</i>ลิงก์</th></tr></thead>
+      <tbody>${d.items.map(it => it.transit
+        ? `<tr class="transit"><td colspan="5"><span class="tm">${it.t}</span>${esc(it.text)}</td></tr>`
+        : rowHTML(it)).join('')}</tbody>
+    </table>
+    ${d.warn?`<div class="callout"><span aria-hidden="true">⚠️</span><span>${esc(d.warn)}</span></div>`:''}
+  </section>`).join('');
+
+  $('#menuNav').innerHTML = DAYS.map(d => `
+    <a href="#day-${d.id}"><span aria-hidden="true">${d.ico}</span><span class="t">${esc(d.menu)}</span><b id="mcnt-${d.id}">0/${d.total}</b></a>`).join('');
+}
+
+function updateProgress(){
+  DAYS.forEach(d => {
+    const c = d.items.filter(i => !i.transit && done.has(i.id)).length;
+    $('#cnt-'+d.id).textContent = $('#mcnt-'+d.id).textContent = `${c}/${d.total}`;
+  });
+  const c = done.size, p = TOTAL ? Math.round(c / TOTAL * 100) : 0;
+  $('#meterFg').style.width = p + '%';
+  $('#meter').setAttribute('aria-valuenow', p);
+  $('#tripPct').textContent = p + '%';
+  $('#tripTxt').textContent = `ไปแล้ว ${c} / ${TOTAL} จุด`;
+}
+
+/* ---------- วันเดินทาง / นับถอยหลัง ---------- */
+function parseDate(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; }
+function updateDates(){
+  const start = parseDate($('#startDate').value), togo = $('#togo');
+  DAYS.forEach((d, i) => {
+    const el = $('#date-'+d.id);
+    el.textContent = start ? ' · ' + new Date(start.getFullYear(), start.getMonth(), start.getDate() + i)
+      .toLocaleDateString('th-TH', { weekday:'short', day:'numeric', month:'short' }) : '';
+  });
+  if (!start) { togo.textContent = 'ตั้งวันเดินทางเพื่อนับถอยหลัง'; return; }
+  const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const diff = Math.round((start - today) / 864e5);
+  togo.textContent = diff > 0 ? `อีก ${diff} วันถึงวันเดินทาง`
+    : diff === 0 ? 'วันนี้วันเดินทาง!'
+    : -diff < DAYS.length ? `ทริปเริ่มแล้ว · วันที่ ${-diff + 1} จาก ${DAYS.length}`
+    : 'ทริปนี้จบแล้ว';
+}
+
+/* ---------- EVENTS ---------- */
+$('#days').addEventListener('change', e => {
+  if (!e.target.matches('input[type=checkbox]')) return;
+  const tr = e.target.closest('.row'), id = tr.dataset.id;
+  e.target.checked ? done.add(id) : done.delete(id);
+  store.set(LS_DONE, JSON.stringify([...done]));
+  tr.classList.toggle('is-done', e.target.checked);
+  updateProgress();
+});
+$('#resetBtn').addEventListener('click', () => {
+  if (!done.size || !confirm('ล้างการติ๊กทั้งหมดใช่ไหม?')) return;
+  done.clear(); store.set(LS_DONE, '[]');
+  $$('.row').forEach(tr => { tr.classList.remove('is-done'); $('input', tr).checked = false; });
+  updateProgress();
+});
+$('#startDate').addEventListener('change', e => { store.set(LS_START, e.target.value); updateDates(); });
+
+renderDays();
+$('#startDate').value = store.get(LS_START) || '';
+updateProgress(); updateDates();
+
+/* =====================================================
+   THREE.JS COVER — skyline เซี่ยงไฮ้ยามอาทิตย์ตก (หมอกอุ่น + เลเยอร์ไกล-ใกล้)
+   ===================================================== */
+(function cover(){
+  const canvas = $('#cover-canvas'), box = $('.cover');
+  if (!window.THREE) { canvas.remove(); return; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); }
+  catch(e){ canvas.remove(); return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0xf0cdae, 26, 100);
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 220);
+  scene.add(new THREE.AmbientLight(0xffe6cf, .8));
+  scene.add(new THREE.HemisphereLight(0xbcd2ee, 0xf0cdae, .55));
+  const sun = new THREE.DirectionalLight(0xffcf9a, 1.25); sun.position.set(30, 14, 24); scene.add(sun);
+
+  const rnd = (s => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; })(23);
+
+  const city = new THREE.Group(); scene.add(city);
+  const bodyMat = c => new THREE.MeshStandardMaterial({ color: c, roughness: .85, metalness: .05 });
+  function block(geo, x, y, z, color = 0x39445e){
+    const m = new THREE.Mesh(geo, bodyMat(color)); m.position.set(x, y, z);
+    const l = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: 0xffe6c8, transparent: true, opacity: .28 }));
+    l.position.copy(m.position); city.add(m, l); return m;
+  }
+  // สามเลเยอร์: ใกล้ → ไกล (หมอกกลืนสี)
+  [{ z0:-6,  z1:-11, hMul:.7,  col:0x333e57 },
+   { z0:-16, z1:-21, hMul:1.25, col:0x46516a },
+   { z0:-30, z1:-38, hMul:2.0, col:0x5d6882 }].forEach(L => {
+    for (let x = -80; x < 80; x += .9 + rnd() * 1.2){
+      const w = .8 + rnd() * 1.2, h = (1.2 + rnd() * 4.8) * L.hMul + 1, H = h + 8;   // ต่อฐานลงไปใต้ขอบภาพ ไม่ให้เห็นพื้น
+      block(new THREE.BoxGeometry(w, H, w * (.8 + rnd() * .6)), x, H / 2 - 8.5, L.z0 + (L.z1 - L.z0) * rnd(), L.col);
+    }
+  });
+  // Oriental Pearl
+  const pearl = new THREE.Group(); pearl.position.set(2, -.5, -9); city.add(pearl);
+  const pm = new THREE.MeshStandardMaterial({ color: 0xd9667d, emissive: 0xff7a95, emissiveIntensity: .25, roughness: .55 });
+  const spire = new THREE.Mesh(new THREE.CylinderGeometry(.09, .22, 17, 10), pm); spire.position.y = 8.5; pearl.add(spire);
+  [[1.0, 1.1], [1.55, 5], [.95, 9.6], [.5, 13]].forEach(([r, y]) => {
+    const s = new THREE.Mesh(new THREE.SphereGeometry(r, 20, 16), pm); s.position.y = y; pearl.add(s);
+    const wf = new THREE.Mesh(new THREE.SphereGeometry(r * 1.02, 12, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: .22 }));
+    wf.position.y = y; pearl.add(wf);
+  });
+  [-.5, .5].forEach(dx => { const leg = new THREE.Mesh(new THREE.CylinderGeometry(.1, .14, 5, 6), pm); leg.position.set(dx, 2.5, 0); leg.rotation.z = dx * -.12; pearl.add(leg); });
+  // Shanghai Tower + Jin Mao
+  block(new THREE.CylinderGeometry(.55, 1.45, 17, 8, 1), 15.5, 8, -10, 0x2f3a53);
+  block(new THREE.CylinderGeometry(.28, .6, 3, 8), 15.5, 17.5, -10, 0x2f3a53);
+  [[1.6, 5], [1.25, 4], [.9, 3.5], [.55, 3]].reduce((y, [w, h]) => { block(new THREE.BoxGeometry(w, h, w), 9, y + h / 2 - .5, -9.4, 0x333e57); return y + h; }, 0);
+
+  let mx = 0, my = 0, visible = true;
+  function resize(){
+    const w = box.clientWidth, h = box.clientHeight;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(box); resize();
+  box.addEventListener('pointermove', e => { const r = box.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5; });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) loop(); }).observe(box);
+
+  const clock = new THREE.Clock();
+  function frame(){
+    const t = reduce ? 0 : clock.getElapsedTime();
+    camera.position.set(Math.sin(t * .08) * 2.2 + mx * 2.5, 3.4 - my * .8, 32);
+    camera.lookAt(0, 9.5, -8);
+    pm.emissiveIntensity = .25 + Math.sin(t * 1.6) * .08;
+    renderer.render(scene, camera);
+  }
+  let raf = 0;
+  function loop(){
+    cancelAnimationFrame(raf);
+    if (!visible || document.hidden) return;
+    frame(); if (!reduce) raf = requestAnimationFrame(loop);
+  }
+  document.addEventListener('visibilitychange', loop);
+  loop();
+})();
+</script>
+</body>
+</html>
